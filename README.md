@@ -21,7 +21,7 @@ A web-based productivity tracker built with ASP.NET MVC, C#, and SQL Server. Inc
 2. Open `ProductivityApp.sln` in Visual Studio
 3. Press `F5` to run
 
-**Contributors**
+# Contributors
 
 Sara Joshi
 
