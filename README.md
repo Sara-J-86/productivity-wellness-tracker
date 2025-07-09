@@ -1,6 +1,6 @@
 # Productivity & Wellness Tracker
 
-A web-based productivity tracker built with ASP.NET MVC, C#, and SQL Server. Includes task tracking, habit building, journaling, mood tracking, and motivational quotes.
+A web-based productivity tracker built with ASP.NET MVC, C#, and SQL Server. Includes task tracking, habit building, journaling and mood tracking.
 
 ## Tech Stack
 - ASP.NET MVC Framework
