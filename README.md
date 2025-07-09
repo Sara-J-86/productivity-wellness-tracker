@@ -14,7 +14,6 @@ A web-based productivity tracker built with ASP.NET MVC, C#, and SQL Server. Inc
 - Habit tracking with streaks
 - Mood logging with chart reports
 - Rich-text journaling
-- Motivation quotes dashboard
 
 ## How to Run
 1. Clone the repo
