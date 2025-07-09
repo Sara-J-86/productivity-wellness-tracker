@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Log Your Mood";
+}
+
+<h3 class="text-center">How are you feeling today?</h3>
+<div class="text-center">
+    @using (Html.BeginForm("LogMood", "Mood", FormMethod.Post))
+    {
+        <button type="submit" name="moodValue" value="1" class="btn btn-light btn-lg">😢</button>
+        <button type="submit" name="moodValue" value="2" class="btn btn-light btn-lg">🙁</button>
+        <button type="submit" name="moodValue" value="3" class="btn btn-light btn-lg">😐</button>
+        <button type="submit" name="moodValue" value="4" class="btn btn-light btn-lg">🙂</button>
+        <button type="submit" name="moodValue" value="5" class="btn btn-light btn-lg">😄</button>
+    }
+</div>

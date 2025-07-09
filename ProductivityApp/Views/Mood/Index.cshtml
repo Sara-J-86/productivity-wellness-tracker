@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ProductivityApp.Models.Mood>
+
+@{
+    ViewBag.Title = "My Mood Log";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Mood History 📅</h2>
+
+<div class="text-center my-3">
+    <form method="get" class="form-inline justify-content-center">
+        <input type="date" name="searchDate" class="form-control mx-2" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>
+
+@if (!Model.Any())
+{
+    <p class="text-center text-muted">No mood entries yet! Start tracking your mood <a href="@Url.Action("LogMood")">here</a>.</p>
+}
+else
+{
+    <table class="table table-bordered text-center mx-auto" style="max-width: 600px;">
+        <thead class="thead-dark">
+            <tr>
+                <th>Date</th>
+                <th>Mood</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var mood in Model)
+            {
+                <tr>
+                    <td>@mood.MoodDate.ToString("dd-MM-yyyy")</td>
+                    <td>
+                        @ProductivityApp.Models.Mood.GetMoodDescription(mood.MoodValue)
+                        <br />
+                        <a href="@Url.Action("Edit", "Mood", new { id = mood.Id })" class="btn btn-sm btn-outline-secondary mt-1">Change Mood</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<div class="text-center mt-4">
+    <a href="@Url.Action("MainDashboard", "Home")" class="btn btn-secondary">
+        ← Back to Dashboard
+    </a>
+</div>

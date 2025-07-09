@@ -1,0 +1,28 @@
+﻿@model ProductivityApp.Models.User
+
+<h2>Register</h2>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert alert-success">@ViewBag.SuccessMessage</div>
+}
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    <label>Full Name:</label>
+    @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+
+    <label>Email:</label>
+    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+
+    <label>Password:</label>
+    @Html.PasswordFor(m => m.PasswordHash, new { @class = "form-control" })
+
+    <br />
+    <button type="submit" class="btn btn-success">Register</button>
+}

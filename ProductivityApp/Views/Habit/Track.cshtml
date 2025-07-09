@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Track Habit";
+    int userId = Convert.ToInt32(Session["UserID"]);
+    int habitId = Convert.ToInt32(Request.QueryString["habitId"]);
+    string habitName = "";
+    DateTime startDate = DateTime.Today;
+    var loggedDates = new List<string>();
+
+    string connStr = System.Configuration.ConfigurationManager.ConnectionStrings["ProductivityDB"].ConnectionString;
+    using (var conn = new System.Data.SqlClient.SqlConnection(connStr))
+    {
+        conn.Open();
+
+        // Get habit details
+        var cmd = new System.Data.SqlClient.SqlCommand("SELECT HabitName, StartDate FROM Habits WHERE HabitID = @HabitID AND UserID = @UserID", conn);
+        cmd.Parameters.AddWithValue("@HabitID", habitId);
+        cmd.Parameters.AddWithValue("@UserID", userId);
+        var reader = cmd.ExecuteReader();
+        if (reader.Read())
+        {
+            habitName = reader["HabitName"].ToString();
+            startDate = (DateTime)reader["StartDate"];
+        }
+        reader.Close();
+
+        // Get logged dates
+        var logCmd = new System.Data.SqlClient.SqlCommand("SELECT LogDate FROM HabitLogs WHERE HabitID = @HabitID", conn);
+        logCmd.Parameters.AddWithValue("@HabitID", habitId);
+        var logReader = logCmd.ExecuteReader();
+        while (logReader.Read())
+        {
+            DateTime date = (DateTime)logReader["LogDate"];
+            loggedDates.Add(date.ToString("yyyy-MM-dd"));
+        }
+    }
+
+    DateTime today = DateTime.Today;
+}
+
+<h2>Track Habit: @habitName</h2>
+
+<p><strong>Start Date:</strong> @startDate.ToString("yyyy-MM-dd")</p>
+
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            @for (int i = 0; i < 21; i++)
+            {
+                <th>Day @(i + 1)</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @for (int i = 0; i < 21; i++)
+            {
+                var logDate = startDate.AddDays(i);
+                string dateStr = logDate.ToString("yyyy-MM-dd");
+                bool isLogged = loggedDates.Contains(dateStr);
+                bool isToday = dateStr == today.ToString("yyyy-MM-dd");
+
+                <td style="background-color:@(isLogged ? "lightgreen" : (isToday ? "lightyellow" : "white"))">
+                    @logDate.ToString("MMM dd") <br />
+
+                    @if (isToday && !isLogged)
+                    {
+                        <form method="post" action="/Habit/Log">
+                            <input type="hidden" name="habitId" value="@habitId" />
+                            <input type="hidden" name="logDate" value="@logDate.ToString("yyyy-MM-dd")" />
+                            <button type="submit" class="btn btn-success btn-sm">Log</button>
+                        </form>
+                    }
+                    else if (isLogged)
+                    {
+                        <span class="text-success">✔</span>
+                    }
+                </td>
+            }
+        </tr>
+    </tbody>
+</table>
+
+<a href="/Habit/Index" class="btn btn-secondary">← Back to Habit List</a>

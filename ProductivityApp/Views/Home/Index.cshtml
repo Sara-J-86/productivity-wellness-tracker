@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Welcome to Productivity Tracker";
+}
+
+<div class="text-center my-5">
+    <h1 class="display-4 fw-bold text-primary">🚀 Boost Your Productivity</h1>
+    <p class="lead text-secondary">Track your tasks, habits, and wellness effortlessly.</p>
+</div>
+
+<div class="row justify-content-center g-4">
+    <div class="col-md-4">
+        <div class="card border-0 shadow-lg rounded-4 h-100 text-center">
+            <div class="card-body">
+                <h3 class="card-title">📅 Task Tracking</h3>
+                <p class="card-text">Organize and manage your daily tasks efficiently.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card border-0 shadow-lg rounded-4 h-100 text-center">
+            <div class="card-body">
+                <h3 class="card-title">😊 Mood Logging</h3>
+                <p class="card-text">Keep track of your emotions and well-being.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card border-0 shadow-lg rounded-4 h-100 text-center">
+            <div class="card-body">
+                <h3 class="card-title">🔥 Habit Tracker</h3>
+                <p class="card-text">Build and sustain healthy habits with ease.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mt-5">
+    @if (Session["UserID"] == null)
+    {
+        <a class="btn btn-primary btn-lg px-5 py-3 shadow" href="@Url.Action("Register", "Account")">Get Started</a>
+    }
+    else
+    {
+        <a class="btn btn-success btn-lg px-5 py-3 shadow" href="@Url.Action("MainDashboard", "Home")">Go to Dashboard</a>
+    }
+</div>

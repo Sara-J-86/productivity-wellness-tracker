@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "MainDashboard";
+}
+
+<div class="text-center my-4">
+    <h2 class="display-5">Welcome, @Session["UserName"] 👋</h2>
+    <p class="lead">What would you like to do today?</p>
+</div>
+
+<div class="row justify-content-center text-center g-4">
+    <div class="col-md-4">
+        <div class="card shadow rounded-4 border-0">
+            <div class="card-body">
+                <h5 class="card-title">🗂️ Manage Tasks</h5>
+                <p class="card-text">Stay organized and boost your productivity.</p>
+                <a href="@Url.Action("Index", "Task")" class="btn btn-outline-primary w-100">Go to Tasks</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow rounded-4 border-0">
+            <div class="card-body">
+                <h5 class="card-title">😊 Track My Mood</h5>
+                <p class="card-text">Log how you're feeling each day.</p>
+                <a href="@Url.Action("Index", "Mood")" class="btn btn-outline-success w-100">Track Mood</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow rounded-4 border-0">
+            <div class="card-body">
+                <h5 class="card-title">🔥 Habit Tracker</h5>
+                <p class="card-text">Build healthy routines with 21-day streaks.</p>
+                <a href="@Url.Action("Index", "Habit")" class="btn btn-outline-warning w-100">Start Tracking</a>
+            </div>
+        </div>
+    </div>
+</div>

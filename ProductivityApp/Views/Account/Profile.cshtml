@@ -1,0 +1,46 @@
+﻿@model ProductivityApp.Models.User
+
+@{
+    ViewBag.Title = "My Profile";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg p-4">
+                <h2 class="text-center">My Profile</h2>
+
+                @if (ViewBag.SuccessMessage != null)
+                {
+                    <div class="alert alert-success">@ViewBag.SuccessMessage</div>
+                }
+                @if (ViewBag.ErrorMessage != null)
+                {
+                    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+                }
+
+                @using (Html.BeginForm("Profile", "Account", FormMethod.Post))
+                {
+                    <div class="mb-3">
+                        <label class="form-label">Full Name:</label>
+                        @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", required = "required" })
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email:</label>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "required" })
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">New Password (Leave blank to keep old password):</label>
+                        @Html.PasswordFor(m => m.PasswordHash, new { @class = "form-control", placeholder = "Enter new password (optional)" })
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

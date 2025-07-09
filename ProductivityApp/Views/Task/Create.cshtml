@@ -1,0 +1,34 @@
+﻿@model ProductivityApp.Models.UserTask
+
+@{
+    ViewBag.Title = "Create Task";
+}
+
+<h2 class="text-center text-primary mb-4">Create New Task 📝</h2>
+
+<div class="card shadow-sm mx-auto" style="max-width: 600px;">
+    <div class="card-body">
+        @using (Html.BeginForm("Create", "Task", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.Title, new { @class = "font-weight-bold" })
+                @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Enter Task Title" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Description, new { @class = "font-weight-bold" })
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", placeholder = "Enter Task Description" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.DueDate, new { @class = "font-weight-bold" })
+                @Html.TextBoxFor(m => m.DueDate, new { @class = "form-control", type = "date" })
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Create Task 🚀</button>
+        }
+    </div>
+</div>
+
+
+
