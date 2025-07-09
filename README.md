@@ -22,6 +22,7 @@ A web-based productivity tracker built with ASP.NET MVC, C#, and SQL Server. Inc
 3. Press `F5` to run
 
 **Contributors**
+
 Sara Joshi
 
 Nishita Jain
