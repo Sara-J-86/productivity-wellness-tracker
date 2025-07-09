@@ -23,6 +23,8 @@ A web-based productivity tracker built with ASP.NET MVC, C#, and SQL Server. Inc
 
 **Contributors**
 Sara Joshi
+
 Nishita Jain
+
 Shruti Bhat
 
